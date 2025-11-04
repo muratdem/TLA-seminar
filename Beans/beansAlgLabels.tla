@@ -65,11 +65,15 @@ Spec == /\ Init /\ [][Next]_vars
 
 TypeOK ==   w+b > 0
 
-Termination == <> (w+b < 2)
+Termination == <> (w+b < 1)
 
 DecreasingN == [] [w'+b'< w+b]_<<w,b>>
 
 EvenB == [] [b%2=0 => b'%2=0]_vars
+
+Display == [ white |-> w,
+             black |-> b,
+           action |-> pc]
 
 ========================================
 Consider a can of coffee beans.

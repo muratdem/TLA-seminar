@@ -1,14 +1,10 @@
 ------------ MODULE beans ------------------
 EXTENDS Integers
-CONSTANTS W, B
-ASSUME /\ W \in 0..100
-       /\ B \in 0..100
-       /\ W+B > 0
 
 VARIABLES w,b
 
-Init == /\ w = W
-        /\ b = B
+Init == /\ w \in 1..10
+        /\ b \in 1..10
 
 WW ==   /\ w > 1  \* same color and white
         /\ w' = w-1 /\ UNCHANGED b
@@ -29,8 +25,8 @@ vars == <<w,b>>
 Spec == Init /\ [] [Next]_vars
              /\ WF_vars(Next) \* Weak Fairness
 
-TypeOK ==   w+b > 0
-
+TypeOK ==   w >= 0 /\ b >= 0
+ 
 Termination == <> (w+b < 2)
 
 DecreasingN == [] [w'+b'< w+b]_vars

@@ -9,15 +9,15 @@ ASSUME /\ W \in 0..100
    variable w=W, b=B;
   {S:while (TRUE)
      { either 
-      {await (w>1); \* \* same color and white
+      {await (w>1); \* same color and white
       	  w:=w-1;
           };
        or
-     {await (b>1); \* \* same color and black
+     {await (b>1); \* same color and black
           b:= b-2; w:= w+1;
          };            
        or
-    {await (w>0 /\ b>0); \* \* different color
+    {await (w>0 /\ b>0); \* different color
           w:= w-1;
          };            
       }
@@ -51,7 +51,6 @@ Spec == /\ Init /\ [][Next]_vars
 
 
 
-
 TypeOK ==   w+b > 0
 
 Termination == <> (w+b < 2)
@@ -59,6 +58,8 @@ Termination == <> (w+b < 2)
 DecreasingN == [] [w'+b'< w+b]_vars
 
 EvenB == [] [b%2=0 => b'%2=0]_vars
+
+OddB == [] [b%2=1 => b'%2=1]_vars
 
 \* EvenW == [] [w%2=0 => w'%2=0]_vars
 
